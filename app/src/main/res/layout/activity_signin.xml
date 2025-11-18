@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- 뒤로가기 -->
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:paddingStart="0dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:text="←"
+        android:textColor="#000000"
+        android:textSize="21sp" />
+
+    <!-- 상단 제목 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="60dp"
+        android:gravity="center_vertical">
+
+
+        <!-- 제목 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="앱 사용이 처음이신가요?\n회원가입이 필요해요!"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:lineSpacingMultiplier="1.4" />
+
+    </LinearLayout>
+
+
+    <!-- 회원가입 버튼 -->
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="회원가입"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_border"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 로그인 없이 사용하기 버튼 -->
+    <Button
+        android:id="@+id/btn_guest"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="로그인 없이 사용하기"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_border_black"
+        android:layout_marginBottom="40dp" />
+
+    <!-- 구분선과 텍스트 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="40dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#DDDDDD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="계정이 있으신가요?"
+            android:textSize="14sp"
+            android:textColor="#999999"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#DDDDDD" />
+
+    </LinearLayout>
+
+    <!-- 로그인 버튼 -->
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="로그인"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_border_black" />
+
+</LinearLayout>
