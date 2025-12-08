@@ -8,7 +8,15 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.a.model.LoginRequest
+import com.example.a.model.LoginResponse
+import com.example.a.model.parseErrorDetail
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import com.google.gson.Gson
 
 class LoginActivity : AppCompatActivity() {
 
@@ -22,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private lateinit var btnBack: ImageButton
+        private val apiService = ApiClient.userService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,17 +67,37 @@ class LoginActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "이메일과 비밀번호를 모두 입력하세요.", Toast.LENGTH_SHORT).show()
             } else {
-                // 간단한 로그인 (테스트용)
-                if (email == "test@example.com" && password == "123456") {
-                    Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
+                val loginRequest = LoginRequest(email, password)
 
-                    // MainActivity로 이동
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish() // LoginActivity 종료
-                } else {
-                    Toast.makeText(this, "이메일 또는 비밀번호가 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
-                }
+                apiService.login(loginRequest).enqueue(object : Callback<LoginResponse> {
+                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                        val loginResponse = response.body()
+                        if (response.isSuccessful) {
+                            if (loginResponse != null && loginResponse.success) {
+                                Toast.makeText(this@LoginActivity, "로그인 성공!", Toast.LENGTH_SHORT).show()
+
+                                // MainActivity로 이동
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                startActivity(intent)
+                                finish() // LoginActivity 종료
+                            }
+                        } else {
+                            val errorMessage = parseErrorDetail(
+                                response.errorBody(),
+                                "오류: ${response.code()}" // Thông báo dự phòng
+                            )
+
+                            val messageToDisplay = "로그인 실패: $errorMessage"
+                            Toast.makeText(this@LoginActivity, messageToDisplay, Toast.LENGTH_SHORT).show()
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        Toast.makeText(this@LoginActivity, "네트워크 오류: ${t.message}", Toast.LENGTH_LONG).show()
+                        Log.e("LoginActivity", "API Call Failed", t)
+                    }
+                })
             }
         }
 

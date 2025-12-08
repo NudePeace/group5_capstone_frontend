@@ -7,6 +7,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.text.TextWatcher
 import android.text.Editable
+import android.util.Log
+import android.widget.Toast
+import com.example.a.model.EmailValidationResponse
+import com.example.a.model.SignupRequest
+import com.example.a.model.SignupResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignupActivity : AppCompatActivity() {
 
@@ -29,13 +37,12 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var tvPasswordStatus: TextView
 
     private var isEmailChecked = false
-    private val registeredEmails = mutableListOf<String>() // 실제로는 서버에서 받아옴
+    private val apiService = ApiClient.userService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        // UI 요소 초기화
         btnBack = findViewById(R.id.btnBack)
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
@@ -45,7 +52,6 @@ class SignupActivity : AppCompatActivity() {
         tvEmailStatus = findViewById(R.id.tvEmailStatus)
         tvPasswordStatus = findViewById(R.id.tvPasswordStatus)
 
-        // 뒤로가기 버튼
         btnBack.setOnClickListener {
             finish()  // 이전 액티비티로 돌아감
         }
@@ -78,35 +84,63 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    // 이메일 중복 확인
     private fun checkEmailDuplicate() {
         val email = etEmail.text.toString().trim()
+        val redColor = getColor(android.R.color.holo_red_light)
+        val greenColor = getColor(android.R.color.holo_green_light)
 
         // 이메일 유효성 검사
         if (email.isEmpty()) {
             tvEmailStatus.text = "이메일을 입력해주세요"
-            tvEmailStatus.setTextColor(getColor(android.R.color.holo_red_light))
+            tvEmailStatus.setTextColor(redColor)
             isEmailChecked = false
             return
         }
 
         if (!email.contains("@") || !email.contains(".")) {
             tvEmailStatus.text = "올바른 이메일 형식이 아닙니다"
-            tvEmailStatus.setTextColor(getColor(android.R.color.holo_red_light))
+            tvEmailStatus.setTextColor(redColor)
             isEmailChecked = false
             return
         }
 
-        // 중복 확인 (실제로는 서버 통신)
-        if (registeredEmails.contains(email)) {
-            tvEmailStatus.text = "이미 가입된 이메일입니다"
-            tvEmailStatus.setTextColor(getColor(android.R.color.holo_red_light))
-            isEmailChecked = false
-        } else {
-            tvEmailStatus.text = "사용 가능한 이메일입니다 ✓"
-            tvEmailStatus.setTextColor(getColor(android.R.color.holo_green_light))
-            isEmailChecked = true
-        }
+        apiService.checkEmailExists(email).enqueue(object : Callback<EmailValidationResponse> {
+            override fun onResponse(call: Call<EmailValidationResponse>, response: Response<EmailValidationResponse>) {
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    if (body != null) {
+                        if (body.available) {
+                            tvEmailStatus.text = "사용 가능한 이메일입니다 ✓"
+                            tvEmailStatus.setTextColor(greenColor)
+                            isEmailChecked = true
+                        } else {
+                            tvEmailStatus.text = body.message
+                            tvEmailStatus.setTextColor(redColor)
+                            isEmailChecked = false
+                        }
+                    } else {
+                        tvEmailStatus.text = "서버 응답"
+                        tvEmailStatus.setTextColor(redColor)
+                        isEmailChecked = false
+                        Log.e("SignupActivity", "Email check failed: Empty response body")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    tvEmailStatus.text = "중복확인 실패: (${response.code()})"
+                    tvEmailStatus.setTextColor(redColor)
+                    isEmailChecked = false
+                    Log.e("SignupActivity", "Email check failed: HTTP ${response.code()}, Error: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<EmailValidationResponse>, t: Throwable) {
+                tvEmailStatus.text = "네트워크 오류. 다시 시도해주세요."
+                tvEmailStatus.setTextColor(redColor)
+                isEmailChecked = false
+                Toast.makeText(this@SignupActivity, "네트워크 오류: ${t.message}", Toast.LENGTH_LONG).show()
+                Log.e("SignupActivity", "API Call Failed (Email Check)", t)
+            }
+        })
     }
 
     // 비밀번호 일치 여부 확인
@@ -120,7 +154,7 @@ class SignupActivity : AppCompatActivity() {
         }
 
         if (password == passwordConfirm) {
-            tvPasswordStatus.text = "비밀번호가 일치합니다 ✓"
+            tvPasswordStatus.text = "비밀번호가 일치합니다"
             tvPasswordStatus.setTextColor(getColor(android.R.color.holo_green_light))
         } else {
             tvPasswordStatus.text = "비밀번호가 일치하지 않습니다"
@@ -128,47 +162,63 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    // 회원가입 처리
     private fun signup() {
         val email = etEmail.text.toString().trim()
         val password = etPassword.text.toString()
         val passwordConfirm = etPasswordConfirm.text.toString()
+        val redColor = getColor(android.R.color.holo_red_light)
 
         // 유효성 검사
         if (!isEmailChecked) {
             tvEmailStatus.text = "이메일 중복확인을 해주세요"
-            tvEmailStatus.setTextColor(getColor(android.R.color.holo_red_light))
+            tvEmailStatus.setTextColor(redColor)
             return
         }
 
         if (password.isEmpty()) {
             tvPasswordStatus.text = "비밀번호를 입력해주세요"
-            tvPasswordStatus.setTextColor(getColor(android.R.color.holo_red_light))
+            tvPasswordStatus.setTextColor(redColor)
             return
         }
 
         if (password.length < 6) {
             tvPasswordStatus.text = "비밀번호는 6자 이상이어야 합니다"
-            tvPasswordStatus.setTextColor(getColor(android.R.color.holo_red_light))
+            tvPasswordStatus.setTextColor(redColor)
             return
         }
 
         if (password != passwordConfirm) {
             tvPasswordStatus.text = "비밀번호가 일치하지 않습니다"
-            tvPasswordStatus.setTextColor(getColor(android.R.color.holo_red_light))
+            tvPasswordStatus.setTextColor(redColor)
             return
         }
 
-        // 회원가입 성공 (실제로는 서버에 저장)
-        registeredEmails.add(email)
+        val signupRequest = SignupRequest(email, password)
 
-        // 화면 종료 또는 로그인 화면으로 이동
-        android.widget.Toast.makeText(
-            this,
-            "회원가입이 완료되었습니다!",
-            android.widget.Toast.LENGTH_SHORT
-        ).show()
+        apiService.registerUser(signupRequest).enqueue(object : Callback<SignupResponse> {
+            override fun onResponse(call: Call<SignupResponse>, response: Response<SignupResponse>) {
+                if (response.isSuccessful) {
+                    val signupResponse = response.body()
+                    Toast.makeText(
+                        this@SignupActivity,
+                        signupResponse?.message ?: "회원가입이 완료되었습니다!",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-        finish() // 이전 화면으로 돌아가기
+                    finish()
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    val message = "회원가입 실패: (${response.code()})"
+
+                    Toast.makeText(this@SignupActivity, message, Toast.LENGTH_LONG).show()
+                    Log.e("SignupActivity", "Registration failed: HTTP ${response.code()}, Error: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
+                Toast.makeText(this@SignupActivity, "네트워크 오류: ${t.message}", Toast.LENGTH_LONG).show()
+                Log.e("SignupActivity", "API Call Failed (Registration)", t)
+            }
+        })
     }
 }
