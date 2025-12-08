@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 로그인 화면 -->
+    <string name="login_title">Login</string>
+    <string name="email_label">Email</string>
+    <string name="email_hint">e.g. email@email.com</string>
+    <string name="password_label">Password</string>
+    <string name="password_hint">Please enter your password</string>
+    <string name="login_button">Submit</string>
+    <string name="forgot_password">Forgot your password?</string>
+
+    <!--이메일 인증 화면 -->
+    <string name="verification_sent_message">
+        A verification code has been sent.\nPlease check your email!
+    </string>
+    <string name="verification_code_hint">Please enter the verification code</string>
+    <string name="submit_button">Submit</string>
+
+    <!-- 비밀번호 찾기 화면 -->
+    <string name="enter_previous_email_message">
+        Please enter the email address you used before.
+    </string>
+    <string name="title_find_password">Find Password</string>
+
+    <!-- 언어 설정 화면 -->
+    <string name="language_select_title">Please select your preferred language!</string>
+    <string name="language_korean">Korean</string>
+    <string name="language_english">English</string>
+
+    <!-- 메인 화면 -->
+    <string name="main_title">Home</string>
+
+    <string name="main_question_pain">Do you have any pain?</string>
+    <string name="main_ai_description">
+        Describe your symptoms to the AI,\nand we’ll recommend a suitable hospital!
+    </string>
+    <string name="main_symptom_input">Enter Symptoms</string>
+
+    <!-- 하단 탭 -->
+    <string name="tab_home">Home</string>
+    <string name="tab_map">Map</string>
+    <string name="tab_consult">Consult</string>
+    <string name="tab_setting">Settings</string>
+
+    <!-- 권한 안내 타이틀 -->
+    <string name="permission_title">
+        To use the app,\nthese permissions are required.
+    </string>
+
+    <!-- 위치 권한 -->
+    <string name="permission_location_desc">Location permission</string>
+    <string name="permission_location_title">Location</string>
+    <string name="permission_location_detail">
+        Show nearby hospitals and pharmacies
+    </string>
+
+    <!-- 알림 권한 -->
+    <string name="permission_notification_desc">Notification permission</string>
+    <string name="permission_notification_title">Notifications (optional)</string>
+    <string name="permission_notification_detail">
+        Service usage notifications
+    </string>
+
+    <!-- 음성 권한 -->
+    <string name="permission_voice_desc">Microphone permission</string>
+    <string name="permission_voice_title">Voice</string>
+    <string name="permission_voice_detail">
+        Use voice input for symptoms
+    </string>
+
+    <!-- 카메라/사진 권한 -->
+    <string name="permission_camera_desc">Camera permission</string>
+    <string name="permission_camera_title">Camera &amp; Photos</string>
+    <string name="permission_camera_detail">
+        Attach images when entering symptoms
+    </string>
+
+    <!-- 확인 버튼 -->
+    <string name="permission_confirm">OK</string>
+
+    <!-- 비밀번호 초기화 화면 -->
+    <string name="new_password_label">New Password</string>
+    <string name="new_password_hint">Enter your new password</string>
+
+    <string name="new_password_confirm_label">Confirm New Password</string>
+    <string name="new_password_confirm_hint">Re-enter your new password</string>
+
+    <!-- 설정 화면 -->
+    <string name="setting_title">Settings</string>
+    <string name="language_setting_label">Language</string>
+    <string name="language_korean_option">Korean (한국어)</string>
+    <string name="language_english_option">English (영어)</string>
+
+    <!-- 첫 화면 -->
+    <string name="onboarding_title">
+        <![CDATA[
+  First time using the app?
+  Please sign up!
+        ]]>
+    </string>
+    <string name="btn_signup">Sign Up</string>
+    <string name="btn_use_without_login">Continue without login</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="btn_login">Log In</string>
+
+    <!-- Sign up screen -->
+    <string name="signup_title_padded">    Sign Up</string>
+    <string name="signup_check_email">Check duplicate</string>
+    <string name="signup_email_status">Please enter your email and tap "Check duplicate"</string>
+    <string name="signup_password_confirm_label">Confirm password</string>
+    <string name="signup_password_confirm_hint">Re-enter your password</string>
+    <string name="signup_submit">Sign Up</string>
+
+    <string name="app_name">DoctorLink</string>
+</resources>

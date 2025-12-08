@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- 헤더: 뒤로가기 + 타이틀 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:background="#FFFFFF">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="1dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/chevron_left_thin"
+            android:contentDescription="뒤로가기" />
+
+        <TextView
+            android:id="@+id/tvHeaderTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="분석 결과"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:gravity="center" />
+
+        <!-- 오른쪽 정렬 맞추기용 빈 뷰 -->
+        <View
+            android:layout_width="30dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+    <!-- 스크롤 가능한 본문 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:gravity="center_horizontal">
+
+            <!-- 큰 타이틀 -->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="분석 결과"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="10dp" />
+
+            <!-- 서브 타이틀: '증상' 증상이 예상됩니다 -->
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="'증상' 증상이 예상됩니다."
+                android:textSize="18sp"
+                android:textColor="#666666"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp" />
+
+            <!-- 추천 박스 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#E6F7FF"
+                android:padding="24dp"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:backgroundTintMode="src_in">
+
+                <TextView
+                    android:id="@+id/tvRecommendTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="사용자님의 증상에"
+                    android:textSize="18sp"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tvRecommendTitleBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내과를 추천합니다."
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#007AFF"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="14dp" />
+
+                <TextView
+                    android:id="@+id/tvRecommendWarning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="해당 추천은 일반적인 정보를 바탕으로 하며, 정확한 진단은 꼭 전문의와 상담하세요."
+                    android:textSize="14sp"
+                    android:textColor="#555555"
+                    android:gravity="center"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+
+            <!-- 추가 질문 + 질문하기 버튼 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tvAdditionalQuestion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="더 궁금하신 내용이 있나요?"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:id="@+id/btnAsk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTintMode="src_in">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="질문하기"
+                        android:textSize="14sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 하단 고정 버튼 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="20dp"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:id="@+id/btnFindHospital"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#4CD964"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:backgroundTintMode="src_in">
+
+            <TextView
+                android:id="@+id/tvFindHospitalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주변 내과 찾기"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

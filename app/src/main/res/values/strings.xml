@@ -1,0 +1,106 @@
+<resources>
+    <!-- 로그인 화면 -->
+    <string name="login_title">로그인</string>
+    <string name="email_label">이메일</string>
+    <string name="email_hint">ex) email@email.com</string>
+    <string name="password_label">비밀번호</string>
+    <string name="password_hint">비밀번호를 입력하세요</string>
+    <string name="login_button">입력완료</string>
+    <string name="forgot_password">비밀번호를 잊으셨나요?</string>
+
+    <!-- 이메일 인증 화면 -->
+    <string name="verification_sent_message">
+        인증번호를 보냈습니다. \n메일을 확인해주세요!
+    </string>
+    <string name="verification_code_hint">인증번호를 입력해주세요</string>
+    <string name="submit_button">입력완료</string>
+
+    <!-- 비밀번호 찾기 화면 -->
+    <string name="enter_previous_email_message">
+        이전에 사용한 메일 주소를 입력해주세요.
+    </string>
+    <string name="title_find_password">비밀번호 찾기</string>
+
+    <!-- 언어 설정 화면 -->
+    <string name="language_select_title">원하시는 언어를 설정하세요!</string>
+    <string name="language_korean">한국어</string>
+    <string name="language_english">English</string>
+
+    <!-- 메인 화면 -->
+    <string name="main_title">메인 화면</string>
+    <string name="main_question_pain">아픈 곳이 있으신가요?</string>
+    <string name="main_ai_description">
+        AI에게 증상을 설명하면\n적합한 병원을 추천해드려요!
+    </string>
+    <string name="main_symptom_input">증상 입력하기</string>
+
+    <!-- 하단 탭 -->
+    <string name="tab_home">홈</string>
+    <string name="tab_map">지도</string>
+    <string name="tab_consult">상담</string>
+    <string name="tab_setting">설정</string>
+
+    <!-- 권한 안내 타이틀 -->
+    <string name="permission_title">
+        앱 사용을 위해\n해당 권한이 필요해요.
+    </string>
+
+    <!-- 위치 권한 -->
+    <string name="permission_location_desc">위치 권한</string>
+    <string name="permission_location_title">위치</string>
+    <string name="permission_location_detail">근처 병원 및 약국 위치 안내</string>
+
+    <!-- 알림 권한 -->
+    <string name="permission_notification_desc">알림 권한</string>
+    <string name="permission_notification_title">알림(선택)</string>
+    <string name="permission_notification_detail">서비스 이용 안내</string>
+
+    <!-- 음성 권한 -->
+    <string name="permission_voice_desc">음성 권한</string>
+    <string name="permission_voice_title">음성</string>
+    <string name="permission_voice_detail">증상 입력 시 음성 사용</string>
+
+    <!-- 카메라/사진 권한 -->
+    <string name="permission_camera_desc">카메라 권한</string>
+    <string name="permission_camera_title">카메라 및 사진</string>
+    <string name="permission_camera_detail">증상 입력 시 이미지 첨부</string>
+
+    <!-- 확인 버튼 -->
+    <string name="permission_confirm">확인</string>
+
+    <!-- 비밀번호 초기화 화면 -->
+    <string name="new_password_label">새 비밀번호</string>
+    <string name="new_password_hint">새 비밀번호를 입력하세요</string>
+
+    <string name="new_password_confirm_label">새 비밀번호 확인</string>
+    <string name="new_password_confirm_hint">새 비밀번호를 다시 입력하세요</string>
+
+    <!-- 설정 화면 -->
+    <string name="setting_title">설정</string>
+    <string name="language_setting_label">언어 설정</string>
+    <string name="language_korean_option">한국어 (Korean)</string>
+    <string name="language_english_option">영어 (English)</string>
+
+    <!-- 첫 화면 문자열 리소스 안에서도 줄바꿈 유지를 위해 CDATA 블록 사용-->
+    <string name="onboarding_title">
+        <![CDATA[
+  앱 사용이 처음이신가요?
+  회원가입이 필요해요!
+        ]]>
+    </string>
+    <string name="btn_signup">회원가입</string>
+    <string name="btn_use_without_login">로그인 없이 사용하기</string>
+    <string name="already_have_account">계정이 있으신가요?</string>
+    <string name="btn_login">로그인</string>
+
+    <!-- 회원가입 화면 -->
+    <string name="signup_title_padded">    회원가입</string>
+    <string name="signup_check_email">중복확인</string>
+    <string name="signup_email_status">이메일을 입력하고 중복확인을 눌러주세요</string>
+    <string name="signup_password_confirm_label">비밀번호 확인</string>
+    <string name="signup_password_confirm_hint">비밀번호를 다시 입력하세요</string>
+    <string name="signup_submit">가입하기</string>
+
+    <string name="app_name">닥터링크</string>
+
+</resources>
