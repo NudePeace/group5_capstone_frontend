@@ -24,14 +24,14 @@
             android:paddingEnd="1dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/chevron_left_thin"
-            android:contentDescription="뒤로가기" />
+            android:contentDescription="@string/back" />
 
         <TextView
             android:id="@+id/tvHeaderTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="분석 결과"
+            android:text=""
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -64,22 +64,11 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="분석 결과"
+                android:text="@string/result_title"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginTop="10dp" />
-
-            <!-- 서브 타이틀: '증상' 증상이 예상됩니다 -->
-            <TextView
-                android:id="@+id/tvSubtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="'증상' 증상이 예상됩니다."
-                android:textSize="18sp"
-                android:textColor="#666666"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="30dp" />
 
             <!-- 추천 박스 -->
             <LinearLayout
@@ -89,6 +78,7 @@
                 android:background="#E6F7FF"
                 android:padding="24dp"
                 android:gravity="center_horizontal"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
                 android:backgroundTintMode="src_in">
 
@@ -96,7 +86,7 @@
                     android:id="@+id/tvRecommendTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="사용자님의 증상에"
+                    android:text="@string/result_recommend_prefix"
                     android:textSize="18sp"
                     android:textColor="#000000" />
 
@@ -104,7 +94,7 @@
                     android:id="@+id/tvRecommendTitleBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="내과를 추천합니다."
+                    android:text=""
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#007AFF"
@@ -115,7 +105,7 @@
                     android:id="@+id/tvRecommendWarning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="해당 추천은 일반적인 정보를 바탕으로 하며, 정확한 진단은 꼭 전문의와 상담하세요."
+                    android:text="@string/result_warning"
                     android:textSize="14sp"
                     android:textColor="#555555"
                     android:gravity="center"
@@ -135,7 +125,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="더 궁금하신 내용이 있나요?"
+                    android:text="@string/result_more_question"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="#000000" />
@@ -158,7 +148,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="질문하기"
+                        android:text="@string/result_ask"
                         android:textSize="14sp"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
@@ -194,7 +184,7 @@
                 android:id="@+id/tvFindHospitalText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="주변 내과 찾기"
+                android:text="@string/result_find_hospital"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF" />

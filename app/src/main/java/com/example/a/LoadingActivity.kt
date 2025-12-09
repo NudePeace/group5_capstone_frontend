@@ -36,7 +36,7 @@ class LoadingActivity : AppCompatActivity() {
         tvTitle = findViewById(R.id.tvTitle)
         progressBar = findViewById(R.id.progressBar)
 
-        tvTitle.text = "AI가 분석중입니다...\n잠시만 기다려주세요!"
+        tvTitle.text = getString(R.string.loading_titles)
 
         btnBack.setOnClickListener {
             finish()

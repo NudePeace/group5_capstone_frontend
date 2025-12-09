@@ -24,14 +24,14 @@
             android:paddingEnd="1dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/chevron_left_thin"
-            android:contentDescription="뒤로가기" />
+            android:contentDescription="@string/back" />
 
         <TextView
             android:id="@+id/tvHeaderTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="AI 분석중"
+            android:text="@string/loading_header"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -55,7 +55,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AI가 분석중입니다...\n잠시만 기다려주세요!"
+            android:text="@string/loading_titles"
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"

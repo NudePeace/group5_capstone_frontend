@@ -26,7 +26,7 @@
             android:paddingEnd="1dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/chevron_left_thin"
-            android:contentDescription="뒤로가기" />
+            android:contentDescription="@string/back" />
 
         <TextView
             android:layout_width="0dp"
@@ -47,7 +47,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="어떤 증상이 있으신가요?\n원하시는 입력 방식을 선택해주세요!"
+        android:text="@string/input_title"
         android:textSize="24sp"
         android:textColor="#000000"
         android:textStyle="bold"
@@ -90,7 +90,7 @@
                 android:id="@+id/tvTextLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="텍스트로 입력하기"
+                android:text="@string/input_text_option"
                 android:textSize="21sp"
                 android:textStyle="bold"
                 android:textColor="#000000" />
@@ -126,7 +126,7 @@
                 android:id="@+id/tvVoiceLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="음성으로 입력하기"
+                android:text="@string/input_voice_option"
                 android:textSize="21sp"
                 android:textStyle="bold"
                 android:textColor="#000000" />
@@ -140,7 +140,7 @@
         android:id="@+id/btnNext"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="다음"
+        android:text="@string/next"
         android:textSize="20sp"
         android:textColor="#FFFFFF"
         android:background="@drawable/btn_border"

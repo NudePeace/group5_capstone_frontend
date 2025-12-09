@@ -112,4 +112,49 @@
     <string name="signup_submit">Sign Up</string>
 
     <string name="app_name">DoctorLink</string>
+
+    <!-- Common -->
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+
+    <!-- InputActivity -->
+    <string name="input_title">What symptoms do you have?\nPlease choose your preferred input method!</string>
+    <string name="input_text_option">Enter text</string>
+    <string name="input_voice_option">Use voice input</string>
+
+    <!-- TextInputActivity -->
+    <string name="textinput_title">Please write your symptoms,\nage, and gender!</string>
+    <string name="textinput_hint">Please enter your symptoms.\nex) 52 years old, male\nSevere headache and tinnitus since yesterday morning.\nIt gets worse when I move.</string>
+    <string name="textinput_guide">↓ Try writing like this!\nInclude main symptoms, location, onset time, duration,\nand intensity (0~10) for more accurate results.</string>
+
+    <!-- LoadingActivity -->
+    <string name="loading_header">AI Analyzing</string>
+    <string name="loading_titles">AI is analyzing...\nPlease wait a moment!</string>
+
+    <!-- VoiceInputActivity -->
+    <string name="voice_title">Please describe your\nsymptoms in detail!</string>
+    <string name="voice_mic">Microphone</string>
+    <string name="voice_stop">Stop</string>
+    <string name="voice_play">Play</string>
+    <string name="voice_delete">Delete</string>
+    <string name="voice_guide">Tap the microphone to start\nrecording, tap again to save!</string>
+
+    <!-- ResultActivity -->
+    <string name="result_title">Analysis Result</string>
+    <string name="result_recommend_prefix">Based on your symptoms,</string>
+    <string name="result_recommend_suffix">is recommended.</string>
+    <string name="result_warning">This recommendation is based on general information. Please consult a specialist for an accurate diagnosis.</string>
+    <string name="result_more_question">Do you have any other questions?</string>
+    <string name="result_ask">Ask</string>
+    <!-- Dynamic department -->
+    <string name="result_find_hospital">Find nearby %1$s</string>
+
+    <!-- Recommended Department -->
+    <string name="dept_internal">Internal Medicine</string>
+    <string name="dept_dental">Dentistry</string>
+    <string name="dept_orthopedic">Orthopedics</string>
+    <string name="dept_eye">Ophthalmology</string>
+    <string name="dept_ent">ENT</string>
+    <string name="dept_dermatology">Dermatology</string>
+
 </resources>

@@ -19,9 +19,7 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private lateinit var btnBack: ImageButton
-    private lateinit var tvHeaderTitle: TextView
     private lateinit var tvTitle: TextView
-    private lateinit var tvSubtitle: TextView
     private lateinit var tvRecommendTitle: TextView
     private lateinit var tvRecommendTitleBold: TextView
     private lateinit var tvRecommendWarning: TextView
@@ -47,9 +45,7 @@ class ResultActivity : AppCompatActivity() {
 
         // 3. 뷰 연결
         btnBack = findViewById(R.id.btnBack)
-        tvHeaderTitle = findViewById(R.id.tvHeaderTitle)
         tvTitle = findViewById(R.id.tvTitle)
-        tvSubtitle = findViewById(R.id.tvSubtitle)
         tvRecommendTitle = findViewById(R.id.tvRecommendTitle)
         tvRecommendTitleBold = findViewById(R.id.tvRecommendTitleBold)
         tvRecommendWarning = findViewById(R.id.tvRecommendWarning)
@@ -59,15 +55,13 @@ class ResultActivity : AppCompatActivity() {
         tvFindHospitalText = findViewById(R.id.tvFindHospitalText)
 
         // 4. 텍스트 세팅
-        tvHeaderTitle.text = "분석 결과"
-        tvTitle.text = "분석 결과"
-        tvSubtitle.text = "'$shortSymptom' 증상이 예상됩니다."
-        tvRecommendTitle.text = "사용자님의 증상에"
-        tvRecommendTitleBold.text = "${department}를 추천합니다."
-        tvRecommendWarning.text =
-            "해당 추천은 일반적인 정보를 바탕으로 하며, 정확한 진단은 꼭 전문의와 상담하세요."
-        tvAdditionalQuestion.text = "더 궁금하신 내용이 있나요?"
-        tvFindHospitalText.text = "주변 $department 찾기"
+        // 다국어 리소스를 사용하는 방식으로 전부 수정
+        tvTitle.text = getString(R.string.result_title)
+        tvRecommendTitle.text = getString(R.string.result_recommend_prefix)
+        tvRecommendTitleBold.text = getString(R.string.result_recommend_suffix, department)
+        tvRecommendWarning.text = getString(R.string.result_warning)
+        tvAdditionalQuestion.text = getString(R.string.result_more_question)
+        tvFindHospitalText.text = getString(R.string.result_find_hospital, department)
 
         // 5. 뒤로가기
         btnBack.setOnClickListener {
@@ -88,23 +82,28 @@ class ResultActivity : AppCompatActivity() {
     }
 
     // JS의 키워드 분석 로직을 Kotlin 함수로 변환
+    // 언어 설정을 위해 getString 방식으로 바꿈
     private fun getDepartmentFromText(text: String): String {
-        var dept = "내과"
+        return when {
+            text.contains("이") || text.contains("치아") || text.contains("잇몸") ->
+                getString(R.string.dept_dental)
 
-        if (text.contains("이") || text.contains("치아") || text.contains("잇몸")) {
-            dept = "치과"
-        } else if (text.contains("뼈") || text.contains("허리") ||
-            text.contains("다리") || text.contains("팔")
-        ) {
-            dept = "정형외과"
-        } else if (text.contains("눈")) {
-            dept = "안과"
-        } else if (text.contains("귀") || text.contains("코") || text.contains("목")) {
-            dept = "이비인후과"
-        } else if (text.contains("피부")) {
-            dept = "피부과"
+            text.contains("뼈") || text.contains("허리") ||
+                    text.contains("다리") || text.contains("팔") ->
+                getString(R.string.dept_orthopedic)
+
+            text.contains("눈") ->
+                getString(R.string.dept_eye)
+
+            text.contains("귀") || text.contains("코") || text.contains("목") ->
+                getString(R.string.dept_ent)
+
+            text.contains("피부") ->
+                getString(R.string.dept_dermatology)
+
+            else ->
+                getString(R.string.dept_internal)
         }
-
-        return dept
     }
+
 }

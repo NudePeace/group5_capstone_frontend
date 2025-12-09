@@ -86,6 +86,37 @@
             android:name=".SettingActivity"
             android:exported="false"/>
 
+        <!-- Input 화면 -->
+        <activity
+            android:name=".InputActivity"
+            android:exported="false" />
+
+        <!-- Text 화면 -->
+        <activity
+            android:name=".TextInputActivity"
+            android:exported="false" />
+
+        <!-- Voice 화면 -->
+        <activity
+            android:name=".VoiceInputActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- 로딩 화면 -->
+        <activity
+            android:name=".LoadingActivity"
+            android:exported="false" />
+
+        <!-- 결과 화면 -->
+        <activity
+            android:name=".ResultActivity"
+            android:exported="false" />
+
+        <!-- 맵 화면 -->
+        <activity
+            android:name=".MapActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -37,7 +37,7 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var tvPasswordStatus: TextView
 
     private var isEmailChecked = false
-    private val apiService = ApiClient.userService
+    private val apiService = ApiClient.ApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

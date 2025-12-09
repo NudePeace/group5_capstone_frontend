@@ -25,7 +25,7 @@
             android:paddingEnd="1dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/chevron_left_thin"
-            android:contentDescription="뒤로가기" />
+            android:contentDescription="@string/back" />
 
     </LinearLayout>
 
@@ -47,7 +47,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="구체적인 증상과 나이,\n성별을 반드시 작성해주세요!"
+                android:text="@string/textinput_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:background="#FFFFFF"
-                android:hint="증상을 입력해주세요!"
+                android:hint="@string/textinput_hint"
                 android:textColorHint="#BDBDBD"
                 android:textColor="#000000"
                 android:textSize="17sp"
@@ -76,7 +76,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="↓ 이렇게 입력하면 좋아요!\n주요 증상과 위치, 증상 발생 시점과 기간, 증상의 강도(0~10점) 등을 입력하면 더 정확해요"
+                android:text="@string/textinput_guide"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#666666"
@@ -101,7 +101,7 @@
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:text="다음"
+            android:text="@string/next"
             android:textSize="20sp"
             android:textColor="#FFFFFF"
             android:background="@drawable/btn_border"

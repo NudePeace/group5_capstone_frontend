@@ -1,17 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="#FFFFFF">
+    android:background="#FAFAFA"
+    tools:context=".VoiceInputActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- 헤더: 뒤로가기 버튼 -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="음성 입력 페이지"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000000" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="1dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/chevron_left_thin"
+            android:contentDescription="@string/back" />
+
+    </LinearLayout>
+
+    <!-- 스크롤 가능한 컨텐츠 영역 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- 제목 텍스트 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/voice_title"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:lineSpacingExtra="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="60dp" />
+
+            <!-- 마이크 버튼 -->
+            <ImageButton
+                android:id="@+id/btnMic"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/record"
+                android:scaleType="centerInside"
+                android:padding="20dp"
+                android:contentDescription="@string/voice_mic"
+                android:layout_marginBottom="30dp" />
+
+            <!-- 녹음 시간 표시 -->
+            <TextView
+                android:id="@+id/tvRecordingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="40dp" />
+
+            <!-- 제어 버튼 (일시정지, 재생, 삭제) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="50dp">
+
+                <!-- 중지 버튼 -->
+                <Button
+                    android:id="@+id/btnStop"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="0dp"
+                    android:text="⏸"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/btn_border"
+                    android:contentDescription="@string/voice_stop"
+                    android:layout_marginEnd="20dp"
+                    android:enabled="false" />
+
+                <!-- 재생 버튼  -->
+                <Button
+                    android:id="@+id/btnPlay"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="0dp"
+                    android:text="▶"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/btn_border"
+                    android:contentDescription="@string/voice_play"
+                    android:layout_marginEnd="20dp"
+                    android:enabled="false" />
+
+                <!-- 삭제 버튼 (Button으로 변경) -->
+                <Button
+                    android:id="@+id/btnDelete"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="0dp"
+                    android:text="✕"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/btn_border"
+                    android:contentDescription="@string/voice_delete"
+                    android:enabled="false" />
+
+            </LinearLayout>
+
+            <!-- 안내 텍스트 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/voice_guide"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="5dp"
+                android:gravity="center"
+                android:layout_marginBottom="40dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- 다음 버튼 (하단 고정) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/next"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_border"
+            android:gravity="center" />
+
+    </LinearLayout>
 
 </LinearLayout>
