@@ -17,7 +17,7 @@ import retrofit2.Response
 
 class ResetpasswordActivity : AppCompatActivity() {
 
-    private val apiService = ApiClient.ApiService
+    private val apiService = ApiClient.service
     private var userEmail: String? = null
 
     override fun attachBaseContext(newBase: android.content.Context?) {

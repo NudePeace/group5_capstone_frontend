@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private lateinit var btnBack: ImageButton
-        private val apiService = ApiClient.ApiService
+        private val apiService = ApiClient.service
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

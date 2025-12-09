@@ -17,7 +17,7 @@ import com.google.gson.Gson
 
 class EmailverificationActivity : AppCompatActivity() {
 
-    private val apiService = ApiClient.ApiService
+    private val apiService = ApiClient.service
     private var email: String? = null
 
     override fun attachBaseContext(newBase: android.content.Context?) {
