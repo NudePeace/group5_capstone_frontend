@@ -12,10 +12,13 @@ import com.example.a.model.PasswordResetResponse
 import com.example.a.model.SignupResponse
 import com.example.a.model.SignupRequest
 import com.example.a.model.TextRequest
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
@@ -37,4 +40,9 @@ interface ApiService {
     fun confirmNewPassword(@Body request: PasswordResetConfirmRequest): Call<PasswordResetResponse>
     @POST("api/chat/predict/text")
     fun analyzeUsingText(@Body request: TextRequest): Call<AnalyzeResponse>
+    @Multipart
+    @POST("api/chat/predict/audio")
+    fun analyzeUsingAudio(
+        @Part file: MultipartBody.Part
+    ): Call<AnalyzeResponse>
 }

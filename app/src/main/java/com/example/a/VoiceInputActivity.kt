@@ -14,6 +14,13 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.a.model.AnalyzeResponse
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -101,15 +108,62 @@ class VoiceInputActivity : AppCompatActivity() {
         // 다음 버튼
         btnNext.setOnClickListener {
             if (recordingFile != null && recordingFile!!.exists()) {
-                val intent = Intent(this, LoadingActivity::class.java)
-                intent.putExtra("voiceFilePath", recordingFile!!.absolutePath)
-                startActivity(intent)
-                finish()
+                uploadAudio(recordingFile!!)
             } else {
                 Toast.makeText(this, "먼저 음성을 녹음해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+    private fun uploadAudio(audioFile: File) {
+
+        Toast.makeText(this, "분석 중..", Toast.LENGTH_LONG).show()
+
+        try {
+            val requestFile = audioFile.asRequestBody("audio/m4a".toMediaTypeOrNull())
+
+            val filePart = MultipartBody.Part.createFormData("file", audioFile.name, requestFile)
+
+            // 3. Gọi API analyzeUsingAudio
+            ApiClient.service.analyzeUsingAudio(filePart)
+                .enqueue(object : Callback<AnalyzeResponse> {
+                    override fun onResponse(
+                        call: Call<AnalyzeResponse>,
+                        response: Response<AnalyzeResponse>
+                    ) {
+
+                        if (response.isSuccessful) {
+                            val result = response.body()?.result
+
+                            if (result != null && result.isNotEmpty()) {
+                                val intent = Intent(this@VoiceInputActivity, ResultActivity::class.java)
+                                intent.putExtra("chat_result", result)
+                                intent.putExtra("source_activity", "VoiceInputActivity")
+                                startActivity(intent)
+                                finish()
+                            }
+                        } else {
+                            Toast.makeText(
+                                this@VoiceInputActivity,
+                                "오류 발생: Code ${response.code()} - ${response.message()}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<AnalyzeResponse>, t: Throwable) {
+                        Toast.makeText(
+                            this@VoiceInputActivity,
+                            "${t.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                })
+        } catch (e: Exception) {
+            Toast.makeText(this, "파일 업로드 오류: ${e.message}", Toast.LENGTH_LONG).show()
+        }
+    }
+
 
     // 권한 처리 + 녹음 시작
     private fun startRecording() {

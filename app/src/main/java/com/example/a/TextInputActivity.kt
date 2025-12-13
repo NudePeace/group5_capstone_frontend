@@ -10,8 +10,6 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-// CÁC IMPORT CẦN THIẾT CHO API
-import android.util.Log
 import com.example.a.model.AnalyzeResponse
 import com.example.a.model.TextRequest
 import retrofit2.Call
@@ -94,25 +92,22 @@ class TextInputActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val chatResult = response.body()?.result
                     if (!chatResult.isNullOrEmpty()) {
-                        Log.i("TextInputAPI", "API Success. Result: $chatResult")
                         val resultIntent = Intent(this@TextInputActivity, ResultActivity::class.java)
                         resultIntent.putExtra("chat_result", chatResult)
-                        // Dọn stack
+                        resultIntent.putExtra("source_activity", "TextInputActivity")
+
                         resultIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(resultIntent)
                         finish()
                     } else {
                         Toast.makeText(this@TextInputActivity, "응답 오류.", Toast.LENGTH_LONG).show()
-                        Log.e("TextInputAPI", "API failed: Empty result.")
                     }
                 } else {
                     Toast.makeText(this@TextInputActivity, "서버 요청 실패: ${response.code()}", Toast.LENGTH_LONG).show()
-                    Log.e("TextInputAPI", "API failed: HTTP ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<AnalyzeResponse>, t: Throwable) {
-                Log.e("TextInputAPI", "Network error", t)
                 Toast.makeText(this@TextInputActivity, "네트워크 오류", Toast.LENGTH_LONG).show()
             }
         })

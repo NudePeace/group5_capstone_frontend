@@ -142,7 +142,7 @@
     <!-- ResultActivity -->
     <string name="result_title">Analysis Result</string>
     <string name="result_recommend_prefix">Based on your symptoms,</string>
-    <string name="result_recommend_suffix">is recommended.</string>
+    <string name="result_recommend_suffix">%1$sis recommended.</string>
     <string name="result_warning">This recommendation is based on general information. Please consult a specialist for an accurate diagnosis.</string>
     <string name="result_more_question">Do you have any other questions?</string>
     <string name="result_ask">Ask</string>

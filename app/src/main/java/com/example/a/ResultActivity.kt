@@ -36,6 +36,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
 
         val analysisResult = intent.getStringExtra("chat_result") ?: ""
+        val sourceActivity = intent.getStringExtra("source_activity")
 
         if (analysisResult.isEmpty()) {
             Toast.makeText(this, "분석 결과를 불러오지 못했습니다.", Toast.LENGTH_LONG).show()
@@ -69,8 +70,13 @@ class ResultActivity : AppCompatActivity() {
 
         // 6. 뒤로가기
         btnBack.setOnClickListener {
-            val intent = Intent(this, TextInputActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            if (sourceActivity == "VoiceInputActivity") {
+                intent = Intent(this, VoiceInputActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            } else if(sourceActivity == "TextInputActivity"){
+                intent = Intent(this, TextInputActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
             finish()
         }
